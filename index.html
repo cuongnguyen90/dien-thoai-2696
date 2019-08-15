@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mo ta dien thoai</title>
+
+    <style>
+        body{
+            font-style: 15px
+        }
+        #display{
+            width: 90%;
+            height: 50px;
+            margin-top: 25px;
+            border: 1px #CCC solid;
+            border-radius: 2%;
+            font-size: 16px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        input[type=button]{
+            background-color: #FFF;
+            border: 1px #CCC solid;
+            border-radius: 20%;
+            color: #000;
+            font-size: 18px;
+            padding: 20px 24px;
+            text-decoration: none;
+            margin: 4px 4px;
+            cursor: pointer;
+            width: 65px;
+        }
+        table{
+            margin: auto;
+            margin-top:20px
+        }
+    </style>
+
+</head>
+<body>
+<div class="main">
+    <div class="mobile1">
+        <div class="center" style="text-align: center; width: 350px;height:550px;margin: auto;margin-top:40px;border: 1px #CCC solid;border-radius: 2%">
+            <div class="main">
+                <div class="brand" style="font-family: 'Apple LiGothic';margin-top: 20px;letter-spacing: 4px">NOKIA</div>
+                <div class="display">
+                    <input type="text" id="display" value="0" >
+                </div>
+                <div class="board">
+                    <table>
+                        <tr>
+                            <td><input type="button" onclick="sendSMS(document.getElementById('display').value)" value="S"></td>
+                            <td><input type="button" onclick="getValue(this.value)" value=")"></td>
+                            <td><input type="button" onclick="getValue_btn(this.value)" value="%"></td>
+                            <td><input type="button" onClick="clearDisplay()" value="C"></td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="mobile2"></div>
+</div>
+<script>
+    function Mobile(mess,inbox_sms){
+
+            this.messenger = mess;// Tin nhan gui di
+            this.inbox_sms = inbox_sms; // Tin nhan den
+            this.memory_creat_sms = new Array(); // Bo nho tin nhan nhap
+            this.memory_inbox_sms = new Array(); // Bo nho tin nhan da nhan
+            this.memory_send_sms = new Array(); // Bo nho tin nhan da gui
+
+
+        
+            this.creat_sms = function () { // Tao tin nhan
+                this.memory_creat_sms.unshift(this.messenger);
+                return this.memory_creat_sms;
+            }
+            this.send_mess = function () {// Gui tin nhan
+                this.memory_send_sms.unshift(this.messenger);
+                return this.memory_send_sms;
+            }
+            this.revice_sms = function () { // Nhan tin nhan
+                this.memory_inbox_sms.unshift(this.inbox_sms);
+                return this.memory_inbox_sms;
+            }
+
+
+
+
+        }
+
+
+
+
+function sendSMS(mess){
+    let nokia = new Mobile(mess);
+    nokia.creat_sms();
+    nokia.send_mess();
+    console.log(nokia);
+
+
+}
+function reviceSMS(sms) {
+
+}
+
+</script>
+</body>
+</html>
